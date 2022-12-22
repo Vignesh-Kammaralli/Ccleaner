@@ -1,9 +1,9 @@
 #stage 1
-FROM node:boron as node
+FROM node:latest as node
 WORKDIR /app
 COPY . /app
 RUN npm install --force 
-RUN npm run build
+RUN npm run build --prod
 #stage 2
 FROM nginx:alpine
 COPY --from=node /app/dist/myapp /usr/share/nginx/html
