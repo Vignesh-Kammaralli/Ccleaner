@@ -1,5 +1,5 @@
 #stage 1
-FROM node:latest as node
+FROM node:boron as node
 WORKDIR /app
 COPY . /app
 RUN npm install --force 
