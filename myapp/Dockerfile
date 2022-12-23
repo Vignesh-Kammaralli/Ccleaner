@@ -8,5 +8,5 @@ RUN npm run build --prod
 RUN ls /app/build
 #stage 2
 FROM nginx:alpine
-COPY --from=node /app/.htaccess /usr/share/nginx/html
+COPY --from=node /app/.htaccess /usr/share/nginx
 COPY --from=node /app/build /usr/share/nginx/html
