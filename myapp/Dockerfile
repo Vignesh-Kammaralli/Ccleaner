@@ -1,5 +1,5 @@
 #stage 1
-FROM node:16.17.0-bullseye-slim as node
+FROM node:latest as node
 WORKDIR /app
 COPY . /app
 ENV TOOL_NODE_FLAGS "--max-old-space-size=4096 --optimize_for_size --gc-interval=100"
