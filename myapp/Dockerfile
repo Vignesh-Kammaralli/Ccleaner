@@ -12,5 +12,5 @@ FROM httpd:2.4
 COPY --from=node /app/.htaccess /usr/local/apache2
 COPY --from=node /app/build /usr/local/apache2/htdocs/
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /usr/local/apache2/conf/httpd.conf
-RUN a2enmod rewrite
+RUN sudo a2enmod rewrite
 
