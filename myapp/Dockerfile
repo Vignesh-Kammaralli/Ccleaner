@@ -7,6 +7,7 @@ RUN npm install --force
 RUN npm run build --prod
 RUN ls /app/build
 #stage 2
-FROM nginx:alpine
-COPY --from=node /app/.htaccess /usr/share/nginx
-COPY --from=node /app/build /usr/share/nginx/html
+#FROM nginx:alpine
+FROM httpd:2.4
+COPY --from=node /app/.htaccess /usr/local/apache2/htdocs/
+COPY --from=node /app/build /usr/local/apache2/htdocs/
