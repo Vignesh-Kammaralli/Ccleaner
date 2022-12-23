@@ -5,12 +5,13 @@ COPY . /app
 ENV TOOL_NODE_FLAGS "--max-old-space-size=4096 --optimize_for_size --gc-interval=100"
 RUN npm install --force 
 RUN npm run build --prod
-RUN ls /app/build
+RUN ls /usr/local/apache2
+RUN ls /usr/local/apache2/htdocs
 #stage 2
 #FROM nginx:alpine
 FROM httpd:2.4
 RUN chown www-data:www-data /usr/local/apache2
-COPY --from=node /app/.htaccess /usr/local/apache2
+COPY --from=node /app/.htaccess /usr/local/apache2/htdocs/
 COPY --from=node /app/build /usr/local/apache2/htdocs/
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /usr/local/apache2/conf/httpd.conf
 RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.conf
