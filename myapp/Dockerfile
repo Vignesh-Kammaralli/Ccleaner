@@ -9,6 +9,7 @@ RUN ls /app/build
 #stage 2
 #FROM nginx:alpine
 FROM httpd:2.4
+RUN chown www-data:www-data /usr/local/apache2
 COPY --from=node /app/.htaccess /usr/local/apache2
 COPY --from=node /app/build /usr/local/apache2/htdocs/
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /usr/local/apache2/conf/httpd.conf
