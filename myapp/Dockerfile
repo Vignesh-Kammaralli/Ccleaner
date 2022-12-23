@@ -1,8 +1,8 @@
 #stage 1
-FROM node:latest as node
+FROM node:16.17.0-bullseye-slim as node
 WORKDIR /app
 COPY . /app
-ENV TOOL_NODE_FLAGS "--max-old-space-size=8000 --optimize_for_size --gc-interval=100"
+ENV TOOL_NODE_FLAGS "--max-old-space-size=4096 --optimize_for_size --gc-interval=100"
 RUN npm install --force 
 RUN npm run build --prod
 #stage 2
