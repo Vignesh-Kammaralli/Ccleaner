@@ -9,5 +9,5 @@ RUN ls /app/build
 #stage 2
 #FROM nginx:alpine
 FROM httpd:2.4
-COPY --from=node /app/.htaccess /usr/local/apache2/htdocs/
+COPY --from=node /app/.htaccess /usr/local/apache2
 COPY --from=node /app/build /usr/local/apache2/htdocs/
